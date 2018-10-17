@@ -1,0 +1,14 @@
+<div>
+  <label>N° de l'événement Agora<input [(ngModel)]="idEventMain" id="search-box"/></label>
+  <input [(ngModel)]="token"/>
+  <input [(ngModel)]="login"/>
+  <input [(ngModel)]="password"/>
+  <button class="btn" (click)="get()">Fetch</button>
+  <button class="btn" (click)="previous()">Previous</button>
+  <button class="btn" (click)="next()">Next</button>
+  <button class="btn" (click)="new()">New</button>
+  <button *ngIf="lecture===false" class="btn" (click)="post()">Post</button>
+</div>
+<div id="fiche">
+  <app-event [eventmain]="eventmain" [lecture]="lecture"></app-event>
+</div>

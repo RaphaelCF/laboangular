@@ -1,0 +1,22 @@
+    #search-box {
+      width: 50px;
+      height: 20px;
+			text-align: right;
+			margin-left: 5px;
+    }
+
+		#container{
+			display:flex;
+		}
+
+		.medias{
+			display:flex;
+			margin-top: 65px;
+			margin-left: 50px;
+			flex-wrap: wrap;
+			align-content: flex-start;
+		}
+
+		.media{
+			margin:5px;
+		}

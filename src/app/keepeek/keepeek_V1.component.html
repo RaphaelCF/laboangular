@@ -1,0 +1,17 @@
+<div>
+  <label>N° du média<input [(ngModel)]="id" id="search-box"/></label>
+	<button class="btn" (click)="get()">Fetch</button>
+	<button class="btn" (click)="next()">Next</button>
+	<button class="btn" (click)="clean()">Clean</button>
+</div>
+<div id="container">
+	<div *ngIf="media" class="media">
+		<h2>{{media.id}} : {{media.title | uppercase}}</h2>
+		<img  src="{{media._links.preview.href}}" />
+	</div>
+	<div *ngIf="medias" class="medias">
+		<div *ngFor="let median of medias" class="media">
+			<app-media-detail [media]="median"></app-media-detail>
+		</div>
+	</div>
+</div>

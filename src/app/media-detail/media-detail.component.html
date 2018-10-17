@@ -1,0 +1,8 @@
+<div *ngIf="media">
+	<div class="window">
+		<img class="vignette" title="{{media.title}}" src="{{media._links.preview.href}}" />
+		<div class="legende">{{media.id}}</div>
+		<label>Crédit<input [(ngModel)]="credit" id="credit"/></label>
+		<button class="btn" (click)="update()">Update</button>
+	</div>
+</div>

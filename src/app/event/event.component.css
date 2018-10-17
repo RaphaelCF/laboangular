@@ -1,0 +1,46 @@
+#fiche_lecture {
+  width: 600px;
+  text-align:center;
+	color: #607D8B;
+	font-weight: bold;
+  border-style: double;
+  padding: 5px;
+  border-color: darkcyan;
+  border-radius: 8px;
+  padding-top: 15px;
+	padding-bottom: 15px;
+}
+.title{
+	color: crimson;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	text-decoration: underline;
+}
+.date{
+  color: blue;
+}
+#fiche_ecriture {
+  width: 600px;
+  text-align:center;
+	color: #607D8B;
+	font-weight: bold;
+  border-style: double;
+  padding: 5px;
+  border-color: darkcyan;
+  border-radius: 8px;
+  padding-top: 15px;
+	padding-bottom: 15px;
+}
+input {
+  width: 200px;
+  height: 20px;
+  text-align: right;
+  margin-left: 5px;
+}
+label {
+  display: inline-block;
+  width: 20em;
+  margin: .5em 0;
+  color: #607D8B;
+  font-weight: bold;
+}

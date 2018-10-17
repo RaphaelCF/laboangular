@@ -1,0 +1,24 @@
+.window{
+	border-style: double;
+	padding: 5px;
+	border-color: darkcyan;
+	border-radius: 8px;
+}
+.legende{
+	text-align:center;
+}
+.vignette{
+	height:125px;
+}
+label {
+  display: inline-block;
+  width: 10em;
+  margin: .5em 0;
+  color: #607D8B;
+  font-weight: bold;
+}
+.btn{
+	background-color: #97eaa3;
+	border-radius: 10px;
+	padding: 5px;
+}

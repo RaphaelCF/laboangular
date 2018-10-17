@@ -1,0 +1,19 @@
+<div *ngIf="lecture; then thenBlock else elseBlock">
+</div>
+<ng-template #thenBlock>
+<div id="fiche_lecture" *ngIf="eventmain">
+	<div class="date">{{eventmain.StartDate | date : 'EEEE d MMMM y' | uppercase}}</div>
+	<div class="date">{{eventmain.StartDate | date : 'HH:mm'}} - {{eventmain.EndDate | date : 'HH:mm'}}</div>
+	<div class="title">{{eventmain.Title}} ({{eventmain.Identity}})</div>
+	<div class="reference">Référence : {{eventmain.Reference}} ({{eventmain.Identity}})</div>
+	<div class="cycle">Cycle : {{eventmain.Free1}}</div>
+	<div class="duree">Durée : {{eventmain.Free2}}</div>
+	<div class="commentaire">{{eventmain.Commentary}}</div>
+</div>
+</ng-template>
+<ng-template #elseBlock>
+<div id="fiche_ecriture" *ngIf="eventmain">
+	<label>Libellé<input [(ngModel)]="eventmain.Title"/></label>
+	<label>Commentaire<input [(ngModel)]="eventmain.Commentary"/></label>
+</div>
+</ng-template>

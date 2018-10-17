@@ -1,0 +1,25 @@
+<div>
+  <label>N° du média<input [(ngModel)]="id" id="search-box"/></label>
+  <input [(ngModel)]="login"/>
+  <input [(ngModel)]="password"/>
+  <button class="btn" (click)="get()">Fetch</button>
+  <button class="btn" (click)="next()">Next</button>
+  <button class="btn" (click)="clean()">Clean</button>
+	<button mat-fab (click)="get()">Fetch</button>
+	<button mat-fab (click)="next()">Next</button>
+	<button mat-fab (click)="clean()">Clean</button>
+  <button mat-icon-button color="accent" (click)="get()" aria-label="Fetch"><mat-icon>search</mat-icon></button>
+	<button mat-icon-button color="accent" (click)="next()" aria-label="Next"><mat-icon>navigate_next</mat-icon></button>
+	<button mat-icon-button color="accent" (click)="clean()" aria-label="Clean"><mat-icon>clear</mat-icon></button>
+</div>
+<div id="container">
+	<div *ngIf="media" class="media">
+		<h2>{{media.id}} : {{media.title | uppercase}}</h2>
+		<img  src="{{media._links.preview.href}}" />
+	</div>
+	<div *ngIf="medias" class="medias">
+		<div *ngFor="let median of medias" class="media">
+			<app-media-detail [media]="median"></app-media-detail>
+		</div>
+	</div>
+</div>
