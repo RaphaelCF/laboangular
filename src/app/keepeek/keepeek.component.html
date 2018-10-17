@@ -1,16 +1,37 @@
-<div>
-  <label>N° du média<input [(ngModel)]="id" id="search-box"/></label>
-  <input [(ngModel)]="login"/>
-  <input [(ngModel)]="password"/>
-  <button class="btn" (click)="get()">Fetch</button>
-  <button class="btn" (click)="next()">Next</button>
-  <button class="btn" (click)="clean()">Clean</button>
-	<button mat-fab (click)="get()">Fetch</button>
-	<button mat-fab (click)="next()">Next</button>
-	<button mat-fab (click)="clean()">Clean</button>
-  <button mat-icon-button color="accent" (click)="get()" aria-label="Fetch"><mat-icon>search</mat-icon></button>
-	<button mat-icon-button color="accent" (click)="next()" aria-label="Next"><mat-icon>navigate_next</mat-icon></button>
-	<button mat-icon-button color="accent" (click)="clean()" aria-label="Clean"><mat-icon>clear</mat-icon></button>
+<div id="barre">
+  <mat-form-field appearance="legacy" >
+    <input matInput [formControl]="idMedia" [errorStateMatcher]="matcher" required/>
+    <mat-label><mat-icon>image</mat-icon>N° du média</mat-label>
+    <mat-hint>Saisir un entier</mat-hint>
+    <mat-error *ngIf="idMedia.hasError('pattern') && !idMedia.hasError('required')">
+     Please enter a valid id
+    </mat-error>
+    <mat-error *ngIf="idMedia.hasError('required')">
+     Id is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field  appearance="legacy">
+    <input matInput [formControl]="login" [errorStateMatcher]="matcher" required/>
+    <mat-label><mat-icon>account_circle</mat-icon>Login</mat-label>
+    <mat-hint>Saisir votre login Keepeek</mat-hint>
+    <mat-error *ngIf="login.hasError('required')">
+     Login is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field  appearance="legacy">
+    <input matInput [formControl]="password" [errorStateMatcher]="matcher" required/>
+    <mat-label><mat-icon>lock</mat-icon>Password</mat-label>
+    <mat-hint>Saisir votre mot de passe Keepeek</mat-hint>
+    <mat-error *ngIf="password.hasError('required')">
+     Password is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <button mat-icon-button color="accent" (click)="get()" aria-label="Fetch" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)"><mat-icon>search</mat-icon></button>
+  <button mat-icon-button color="accent" (click)="next()" aria-label="Next" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)"><mat-icon>navigate_next</mat-icon></button>
+  <button mat-icon-button color="accent" (click)="clean()" aria-label="Clean"><mat-icon>clear</mat-icon></button>
+  <button mat-fab (click)="get()" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)">Fetch</button>
+  <button mat-fab (click)="next()" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)">Next</button>
+  <button mat-fab (click)="clean()">Clean</button>
 </div>
 <div id="container">
 	<div *ngIf="media" class="media">

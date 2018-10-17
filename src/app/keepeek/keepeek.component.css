@@ -1,13 +1,10 @@
-    #search-box {
-      width: 50px;
-      height: 20px;
-			text-align: right;
-			margin-left: 5px;
-    }
-
 		#container{
 			display:flex;
 		}
+
+    mat-form-field{
+      margin-left: 5px;
+    }
 
 		.medias{
 			display:flex;
@@ -20,3 +17,7 @@
 		.media{
 			margin:5px;
 		}
+
+    #barre{
+      margin-top:10px;
+    }

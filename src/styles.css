@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/purple-green.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 .btn{
   background-color: #97eaa3;
   border-radius: 10px;
@@ -9,10 +9,4 @@
   background-color: #97eaa3;
   border-radius: 10px;
   padding: 5px;
-}
-label {
-  display: inline-block;
-  width: 20em;
-  margin: .5em 0;
-  font-weight: bold;
 }
