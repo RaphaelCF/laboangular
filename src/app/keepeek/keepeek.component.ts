@@ -34,6 +34,7 @@ export class KeepeekComponent implements OnInit {
     Validators.required
   ]);
   matcher = new MyErrorStateMatcher();
+  hide = true;
 
 	constructor(private keepeekService: KeepeekService) {}
 
