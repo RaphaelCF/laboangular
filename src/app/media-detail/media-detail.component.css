@@ -1,14 +1,5 @@
-.window{
-	border-style: double;
-	padding: 5px;
-	border-color: darkcyan;
-	border-radius: 8px;
-}
 .legende{
 	text-align:center;
-}
-.vignette{
-	height:125px;
 }
 label {
   display: inline-block;

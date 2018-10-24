@@ -1,19 +1,6 @@
-		#container{
-			display:flex;
-		}
-
     mat-form-field{
       margin-left: 5px;
     }
-
-		.medias{
-			display:flex;
-			margin-top: 65px;
-			margin-left: 50px;
-			flex-wrap: wrap;
-			align-content: flex-start;
-		}
-
     #barre{
       height: 100px;
     }

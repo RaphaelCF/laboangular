@@ -21,7 +21,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class KeepeekComponent implements OnInit {
-	media:Media;
 	medias:Media[];
   idMedia = new FormControl('', [
     Validators.required,
@@ -39,8 +38,7 @@ export class KeepeekComponent implements OnInit {
 	constructor(private keepeekService: KeepeekService) {}
 
  	exploit(media: Media): void{
-		this.media = media;
-		if (this.media.id !== 0){this.medias.push(media);}
+		if (media.id !== 0){this.medias.splice(0,0,media);}
 	}
 
 	get(): void {
@@ -60,7 +58,6 @@ export class KeepeekComponent implements OnInit {
 
 	clean(): void{
 		this.medias = [];
-		this.media = null;
 		this.idMedia.setValue(4001);
 	}
 
