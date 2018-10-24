@@ -3,7 +3,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatButtonToggleModule, MatInputModule, MatFormFieldModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatButtonToggleModule, MatInputModule, MatFormFieldModule, MatToolbarModule, MatCardModule } from '@angular/material';
 import { MatIconModule } from '@angular/material';
 //import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 //import { InMemoryDataService } from './in-memory-data.service';
@@ -47,6 +47,7 @@ registerLocaleData(localeFr, 'fr');
     MatButtonModule,
     MatButtonToggleModule,
     MatFormFieldModule,
+    MatCardModule,
     MatInputModule,
 		HttpClientModule
 		// The HttpClientInMemoryWebApiModule module intercepts HTTP requests

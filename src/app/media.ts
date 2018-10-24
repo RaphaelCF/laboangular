@@ -1,7 +1,7 @@
 export class Media {
   id: number;
   title: string;
-	large: string;
+  auteur: string;
 	_links:{
 		preview:
 			{ href: string; }

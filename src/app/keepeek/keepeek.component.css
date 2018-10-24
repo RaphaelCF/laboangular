@@ -14,10 +14,6 @@
 			align-content: flex-start;
 		}
 
-		.media{
-			margin:5px;
-		}
-
     #barre{
-      margin-top:10px;
+      height: 100px;
     }

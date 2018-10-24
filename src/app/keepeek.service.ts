@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class KeepeekService {
-	media : Media = {id : 0, title : '', large : '', _links : { preview : { href : '' }, "kpk:large" : { href : '' }}, _embedded :{metadata:[{id : '',value : ''}]}};
+	media : Media = {id : 0, title : '', auteur : '', _links : { preview : { href : '' }, "kpk:large" : { href : '' }}, _embedded :{metadata:[{id : '',value : ''}]}};
 
 	public login: string = '';
   public password: string = '';

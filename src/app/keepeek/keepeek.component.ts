@@ -50,7 +50,9 @@ export class KeepeekComponent implements OnInit {
 	}
 
 	next(): void {
-		this.idMedia.setValue(this.idMedia.value + 1);
+    let value = this.idMedia.value;
+    value ++;
+    this.idMedia.setValue(value);
     this.keepeekService.login = this.login.value;
     this.keepeekService.password = this.password.value;
 		this.keepeekService.getMedia(this.idMedia.value).subscribe(media => this.exploit(media));
@@ -59,11 +61,11 @@ export class KeepeekComponent implements OnInit {
 	clean(): void{
 		this.medias = [];
 		this.media = null;
-		this.idMedia.setValue(4000);
+		this.idMedia.setValue(4001);
 	}
 
 	ngOnInit(): void {
-		this.idMedia.setValue(4000);
+		this.idMedia.setValue(4001);
 		this.medias = [];
 	}
 

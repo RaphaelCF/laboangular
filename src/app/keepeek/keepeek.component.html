@@ -1,4 +1,19 @@
-<div id="barre">
+<mat-toolbar id='barre' color='primary'>
+  <mat-form-field  appearance="legacy">
+    <input matInput [formControl]="login" [errorStateMatcher]="matcher" required/>
+    <mat-label><mat-icon>account_circle</mat-icon>Login</mat-label>
+    <mat-error *ngIf="login.hasError('required')">
+     Login is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field  appearance="legacy">
+    <input matInput [formControl]="password" [errorStateMatcher]="matcher" [type]="hide ? 'password' : 'text'" required/>
+    <mat-label><mat-icon>lock</mat-icon>Password</mat-label>
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    <mat-error *ngIf="password.hasError('required')">
+     Password is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
   <mat-form-field appearance="legacy" >
     <input matInput [formControl]="idMedia" [errorStateMatcher]="matcher" required/>
     <mat-label><mat-icon>image</mat-icon>N° du média</mat-label>
@@ -10,35 +25,26 @@
      Id is <strong>required</strong>
     </mat-error>
   </mat-form-field>
-  <mat-form-field  appearance="legacy">
-    <input matInput [formControl]="login" [errorStateMatcher]="matcher" required/>
-    <mat-label><mat-icon>account_circle</mat-icon>Login</mat-label>
-    <mat-hint>Saisir votre login Keepeek</mat-hint>
-    <mat-error *ngIf="login.hasError('required')">
-     Login is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field  appearance="legacy">
-    <input matInput [formControl]="password" [errorStateMatcher]="matcher" [type]="hide ? 'password' : 'text'" required/>
-    <mat-label><mat-icon>lock</mat-icon>Password</mat-label>
-    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    <mat-hint>Saisir votre mot de passe Keepeek</mat-hint>
-    <mat-error *ngIf="password.hasError('required')">
-     Password is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
   <button mat-icon-button color="accent" (click)="get()" aria-label="Fetch" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)"><mat-icon>search</mat-icon></button>
   <button mat-icon-button color="accent" (click)="next()" aria-label="Next" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)"><mat-icon>navigate_next</mat-icon></button>
   <button mat-icon-button color="accent" (click)="clean()" aria-label="Clean"><mat-icon>clear</mat-icon></button>
   <button mat-fab (click)="get()" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)">Fetch</button>
   <button mat-fab (click)="next()" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)">Next</button>
   <button mat-fab (click)="clean()">Clean</button>
-</div>
+</mat-toolbar>
+<mat-card *ngIf="media" class="media">
+  <mat-card-header>
+    <img mat-card-avatar src="{{media._links.preview.href}}">
+    <mat-card-title>{{media.id}} : {{media.title | uppercase}}</mat-card-title>
+    <mat-card-subtitle>{{media._embedded.metadata[0].value}}</mat-card-subtitle>
+    <mat-card-subtitle>{{media._embedded.metadata[2].value}}</mat-card-subtitle>
+    <mat-card-subtitle>{{media._embedded.metadata[4].value}}</mat-card-subtitle>
+    <mat-card-subtitle>{{media._embedded.metadata[6].value}}</mat-card-subtitle>
+    <mat-card-subtitle>{{media._embedded.metadata[7].value}}</mat-card-subtitle>
+  </mat-card-header>
+	<img mat-card-image  src="{{media._links.preview.href}}" />
+</mat-card>
 <div id="container">
-	<div *ngIf="media" class="media">
-		<h2>{{media.id}} : {{media.title | uppercase}}</h2>
-		<img  src="{{media._links.preview.href}}" />
-	</div>
 	<div *ngIf="medias" class="medias">
 		<div *ngFor="let median of medias" class="media">
 			<app-media-detail [media]="median"></app-media-detail>
