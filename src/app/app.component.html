@@ -1,13 +1,16 @@
 <body>
 <mat-toolbar>
-	<span>{{ title }}</span>
+    <span>{{ title }}</span>
+		<span class="example-fill-remaining-space"></span>
+		<mat-button-toggle-group>
+		  <mat-button-toggle routerLink="/dashboard">Dashboard</mat-button-toggle>
+			<mat-button-toggle routerLink="/heroes">Heroes</mat-button-toggle>
+			<mat-button-toggle routerLink="/keepeek">Keepeek</mat-button-toggle>
+			<mat-button-toggle routerLink="/agora">Agora</mat-button-toggle>
+		</mat-button-toggle-group>
+
 </mat-toolbar>
-<nav>
-	<a routerLink="/dashboard">Dashboard</a>
-	<a routerLink="/heroes">Heroes</a>
-	<a routerLink="/keepeek">Keepeek</a>
-	<a routerLink="/agora">Agora</a>
-</nav>
+
 <router-outlet></router-outlet>
 <app-messages></app-messages>
 </body>
