@@ -27,10 +27,10 @@
   </mat-form-field>
   <button mat-icon-button color="accent" (click)="get()" aria-label="Fetch" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)"><mat-icon>search</mat-icon></button>
   <button mat-icon-button color="accent" (click)="next()" aria-label="Next" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)"><mat-icon>navigate_next</mat-icon></button>
-  <button mat-icon-button color="accent" (click)="clean()" aria-label="Clean"><mat-icon>clear</mat-icon></button>
+  <button mat-icon-button color="accent" (click)="clean()" aria-label="Clear"><mat-icon>clear</mat-icon></button>
   <button mat-fab (click)="get()" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)">Fetch</button>
   <button mat-fab (click)="next()" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)">Next</button>
-  <button mat-fab (click)="clean()">Clean</button>
+  <button mat-fab (click)="clean()">Clear</button>
 </mat-toolbar>
 <div class="medias">
    <app-media-detail *ngFor="let median of medias" [media]="median"></app-media-detail>
