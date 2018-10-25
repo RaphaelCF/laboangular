@@ -22,7 +22,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class AgoraComponent implements OnInit {
   eventmain: Eventmain;
-  lecture: boolean;
 
   idEventMain = new FormControl('', [
     Validators.required,
@@ -43,17 +42,11 @@ export class AgoraComponent implements OnInit {
   constructor(private agoraService:AgoraService) { }
 
   goget(){
-    this.lecture = true;
-    this.agoraService.getEventMain(this.idEventMain.value).subscribe(eventmain => this.eventmain =eventmain);
+    this.agoraService.getEventMain(this.idEventMain.value).subscribe(eventmain => this.exploit(eventmain));
   }
 
   exploit(eventmain: Eventmain){
     this.eventmain = eventmain;
-    this.lecture = true;
-  }
-
-  gopost(){
-    this.agoraService.createEventMain(this.eventmain).subscribe(eventmain => this.exploit(eventmain));
   }
 
   get(): void {
@@ -76,8 +69,17 @@ export class AgoraComponent implements OnInit {
   }
 
   new(): void{
+    if (this.token.value === ''){
+      this.agoraService.login = this.login.value;
+      this.agoraService.password = this.password.value;
+      this.agoraService.authenticate().subscribe(any => any);
+    }
+    else{
+      this.agoraService.token = this.token.value;
+    }
     this.eventmain = new Eventmain();
-    this.lecture = false;
+    this.eventmain.Title = '';
+    this.eventmain.Commentary = '';
     this.eventmain.IDCustomer = 5;
     this.eventmain.IDPhysicalCustomer = 178;
     this.eventmain.IDCompanie = 4;
@@ -94,18 +96,6 @@ export class AgoraComponent implements OnInit {
     this.eventmain.IDExternal = 999999;
     this.eventmain.IdAdmin = 1;
     this.eventmain.EventList = [ { IDCompanie: 4, IDUser : 14, StartDate : '2020-09-17T14:30:00', EndDate : '2020-09-17T17:00:00', NbPeople : 200, OptionDate : '2020-07-27T12:02:37', IDStatus : 4, List1 : 61, IDExternal : 999999, IdAdmin : 1, PlaceList : [ { Identity : 2 }] }];
-  }
-
-  post(): void {
-    if (this.token.value === ''){
-      this.agoraService.login = this.login.value;
-      this.agoraService.password = this.password.value;
-      this.agoraService.authenticate().subscribe(any => this.gopost());
-    }
-    else{
-      this.agoraService.token = this.token.value;
-      this.gopost();
-    }
   }
 
   previous(): void {

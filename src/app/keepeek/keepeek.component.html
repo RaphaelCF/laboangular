@@ -27,7 +27,7 @@
   </mat-form-field>
   <button mat-icon-button color="accent" (click)="get()" aria-label="Fetch" matTooltip="Fetch" matTooltipPosition="above" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)"><mat-icon>search</mat-icon></button>
   <button mat-icon-button color="accent" (click)="next()" aria-label="Next" matTooltip="Next" matTooltipPosition="above" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)"><mat-icon>navigate_next</mat-icon></button>
-  <button mat-icon-button color="accent" (click)="clean()" matTooltip="Clear" matTooltipPosition="above" aria-label="Clear"><mat-icon>clear</mat-icon></button>
+  <button mat-icon-button color="accent" (click)="clean()" matTooltip="Clear"  aria-label="Clear"><mat-icon>clear</mat-icon></button>
   <button mat-fab (click)="get()" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)">Fetch</button>
   <button mat-fab (click)="next()" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)">Next</button>
   <button mat-fab (click)="clean()">Clear</button>

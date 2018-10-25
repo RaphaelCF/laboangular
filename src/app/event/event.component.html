@@ -1,19 +1,42 @@
-<div *ngIf="lecture; then thenBlock else elseBlock">
+<div *ngIf="eventmain.Identity; then thenBlock else elseBlock">
 </div>
 <ng-template #thenBlock>
-<div id="fiche_lecture" *ngIf="eventmain">
-	<div class="date">{{eventmain.StartDate | date : 'EEEE d MMMM y' | uppercase}}</div>
-	<div class="date">{{eventmain.StartDate | date : 'HH:mm'}} - {{eventmain.EndDate | date : 'HH:mm'}}</div>
-	<div class="title">{{eventmain.Title}} ({{eventmain.Identity}})</div>
-	<div class="reference">Référence : {{eventmain.Reference}} ({{eventmain.Identity}})</div>
-	<div class="cycle">Cycle : {{eventmain.Free1}}</div>
-	<div class="duree">Durée : {{eventmain.Free2}}</div>
-	<div class="commentaire">{{eventmain.Commentary}}</div>
-</div>
+	<mat-card *ngIf="eventmain">
+		<mat-card-header>
+			<mat-card-title>{{eventmain.Title}} ({{eventmain.Identity}})</mat-card-title>
+			<mat-card-subtitle>{{eventmain.StartDate | date : 'EEEE d MMMM y' | uppercase}}</mat-card-subtitle>
+			<mat-card-subtitle>{{eventmain.StartDate | date : 'HH:mm'}} - {{eventmain.EndDate | date : 'HH:mm'}}</mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<mat-list role="list">
+				<mat-list-item role="listitem">Référence : {{eventmain.Reference}} ({{eventmain.Identity}}) </mat-list-item>
+				<mat-list-item role="listitem">Cycle : {{eventmain.Free1}}</mat-list-item>
+				<mat-list-item role="listitem">Durée : {{eventmain.Free2}}</mat-list-item>
+				<mat-list-item role="listitem">{{eventmain.Commentary}}</mat-list-item>
+			</mat-list>
+		</mat-card-content>
+	</mat-card>
 </ng-template>
 <ng-template #elseBlock>
-<div id="fiche_ecriture" *ngIf="eventmain">
-	<label>Libellé<input [(ngModel)]="eventmain.Title"/></label>
-	<label>Commentaire<input [(ngModel)]="eventmain.Commentary"/></label>
-</div>
+	<mat-card *ngIf="eventmain">
+		<mat-card-header>
+			<mat-card-title>Nouvel événement</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<mat-form-field appearance="outline" color="accent">
+				<input matInput [formControl]="title" required/>
+				<mat-label>Titre</mat-label>
+				<mat-error *ngIf="title.hasError('required')">
+				 Title is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field appearance="outline" color="accent">
+		    <textarea matInput [formControl]="commentary" placeholder="Commentaire"></textarea>
+		  </mat-form-field>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-icon-button color="accent" (click)="save()" aria-label="Save" [disabled]="!(this.title.valid)"><mat-icon>save</mat-icon></button>
+		</mat-card-actions>
+		<mat-progress-bar [mode]="modeB" [value]="valueB"></mat-progress-bar>
+	</mat-card>
 </ng-template>

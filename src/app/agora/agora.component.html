@@ -33,11 +33,11 @@
      Id is <strong>required</strong>
     </mat-error>
   </mat-form-field>
-  <button mat-icon-button color="accent" (click)="get()" aria-label="Fetch" matTooltip="Fetch" matTooltipPosition="above" [disabled]="!(this.idEventMain.valid&&(this.login.valid&&this.password.valid)||(this.token.valid))"><mat-icon>search</mat-icon></button>
-  <button mat-icon-button color="accent" (click)="previous()" aria-label="Previous" matTooltip="Previous" matTooltipPosition="above" [disabled]="!(this.idEventMain.valid&&(this.login.valid&&this.password.valid)||(this.token.valid))"><mat-icon>navigate_before</mat-icon></button>
-  <button mat-icon-button color="accent" (click)="next()" aria-label="Next" matTooltip="Next" matTooltipPosition="above" [disabled]="!(this.idEventMain.valid&&(this.login.valid&&this.password.valid)||(this.token.valid))"><mat-icon>navigate_next</mat-icon></button>
-  <button mat-icon-button color="accent" (click)="new()" aria-label="New" matTooltip="New" matTooltipPosition="above" [disabled]="!(this.idEventMain.valid&&(this.login.valid&&this.password.valid)||(this.token.valid))"><mat-icon>add_circle</mat-icon></button>
+  <button mat-icon-button color="accent" (click)="get()" aria-label="Fetch" matTooltip="Fetch" matTooltipPosition="above" [disabled]="!this.idEventMain.valid||((!this.login.valid||!this.password.valid)&&(!this.token.valid))"><mat-icon>search</mat-icon></button>
+  <button mat-icon-button color="accent" (click)="previous()" aria-label="Previous" matTooltip="Previous" matTooltipPosition="above" [disabled]="!this.idEventMain.valid||((!this.login.valid||!this.password.valid)&&(!this.token.valid))"><mat-icon>navigate_before</mat-icon></button>
+  <button mat-icon-button color="accent" (click)="next()" aria-label="Next" matTooltip="Next" matTooltipPosition="above" [disabled]="!this.idEventMain.valid||((!this.login.valid||!this.password.valid)&&(!this.token.valid))"><mat-icon>navigate_next</mat-icon></button>
+  <button mat-icon-button color="accent" (click)="new()" aria-label="New" matTooltip="New" matTooltipPosition="above" [disabled]="(!this.login.valid||!this.password.valid)&&(!this.token.valid)"><mat-icon>add_circle</mat-icon></button>
 </mat-toolbar>
 <div id="fiche">
-  <app-event [eventmain]="eventmain" [lecture]="lecture"></app-event>
+  <app-event [eventmain]="eventmain"></app-event>
 </div>

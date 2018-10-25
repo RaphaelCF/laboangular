@@ -11,8 +11,7 @@ const agoraUrl: string = 'http://agora:81/api';
   providedIn: 'root'
 })
 export class AgoraService {
-  eventMainDefault: Eventmain;
-
+  eventMainDefault: Eventmain = {Identity : 0, Title : '', IDCustomer : 0, IDPhysicalCustomer : 0, IDCompanie : 0, IDUser : 0, Reference : '', Commentary : '', StartDate : '', EndDate : '', NbPeople : 0, CreationDate : '', MainDate : '', IDStatus : 0, Free1 : '', Free2 : '', List1: 0, IDExternal : 0, IdAdmin:0, EventList : [{IDCompanie:0, IDUser:0, StartDate:'', EndDate:'', NbPeople:0, OptionDate:'', IDStatus:0, List1:0, IDExternal:0, IdAdmin:0, PlaceList : [{Identity:0}]}] };
   public token: string = '';
   public login: string = '';
   public password: string = '';
@@ -56,14 +55,13 @@ export class AgoraService {
 	}
 
   createEventMain(eventMain:Eventmain): Observable<Eventmain> {
-    this.messageService.add(eventMain.Title);
     this.httpOptions = {
       headers: new HttpHeaders({'Content-Type' : 'application/json', 'AgoraEvent-Token' : this.token})
     };
     this.url = `${agoraUrl}/eventMain`;
     return this.http.post<Eventmain>(this.url, eventMain, this.httpOptions).pipe(
         tap(_ => this.messageService.add(`new event created`)),
-        catchError(this.handleError('createEventMain',this.eventMainDefault ))
+        catchError(this.handleError('createEventMain',eventMain ))
     );
   }
 
