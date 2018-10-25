@@ -32,6 +32,6 @@
   <button mat-fab (click)="next()" [disabled]="!(this.idMedia.valid&&this.login.valid&&this.password.valid)">Next</button>
   <button mat-fab (click)="clean()">Clean</button>
 </mat-toolbar>
-<div *ngFor="let median of medias" class="media">
-	<app-media-detail [media]="median"></app-media-detail>
+<div class="medias">
+   <app-media-detail *ngFor="let median of medias" [media]="median"></app-media-detail>
 </div>

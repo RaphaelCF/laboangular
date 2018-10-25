@@ -4,3 +4,13 @@
     #barre{
       height: 100px;
     }
+
+	 .medias{
+		 display:flex;
+		 flex-wrap: wrap;
+		 justify-content:center;
+		 align-content: flex-start;
+	 }
+	 app-media-detail{
+		 width:25%;
+	 }
