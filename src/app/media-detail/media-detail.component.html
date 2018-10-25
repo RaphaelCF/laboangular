@@ -14,8 +14,11 @@
 		<mat-card-subtitle>{{media._embedded.metadata[7].value}}</mat-card-subtitle>
 	</mat-expansion-panel>
 	<img mat-card-image class="vignette" src="{{media._links.preview.href}}">
-	<mat-card-actions>
-		<label>Crédit<input [(ngModel)]="credit" id="credit"/></label>
-		<button class="btn" (click)="update()">Update</button>
+	<mat-card-actions color="accent">
+		<mat-form-field appearance="outline">
+			<input matInput [formControl]="credit" required/>
+			<mat-label><mat-icon>copyright</mat-icon></mat-label>
+		</mat-form-field>
+	  <button mat-icon-button color="accent" (click)="update()" aria-label="Update"><mat-icon>save</mat-icon></button>
 	</mat-card-actions>
 </mat-card>
