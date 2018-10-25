@@ -2,12 +2,17 @@
 	<mat-card-header>
 		<img mat-card-avatar src="{{media._links.preview.href}}">
 		<mat-card-title>{{media.id}} : {{media.title | uppercase}}</mat-card-title>
-		<mat-card-subtitle>{{media._embedded.metadata[0].value}}</mat-card-subtitle>
+	</mat-card-header>
+	<mat-expansion-panel >
+		<mat-expansion-panel-header>
+			<mat-panel-title>{{media._embedded.metadata[0].value}}</mat-panel-title>
+			<mat-panel-description>Détails</mat-panel-description>
+		</mat-expansion-panel-header>
 		<mat-card-subtitle>{{media._embedded.metadata[2].value}}</mat-card-subtitle>
 		<mat-card-subtitle>{{media._embedded.metadata[4].value}}</mat-card-subtitle>
 		<mat-card-subtitle>{{media._embedded.metadata[6].value}}</mat-card-subtitle>
 		<mat-card-subtitle>{{media._embedded.metadata[7].value}}</mat-card-subtitle>
-	</mat-card-header>
+	</mat-expansion-panel>
 	<img mat-card-image class="vignette" src="{{media._links.preview.href}}">
 	<mat-card-actions>
 		<label>Crédit<input [(ngModel)]="credit" id="credit"/></label>
