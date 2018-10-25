@@ -1,14 +1,43 @@
-<div>
-  <label>N° de l'événement Agora<input [(ngModel)]="idEventMain" id="search-box"/></label>
-  <input [(ngModel)]="token"/>
-  <input [(ngModel)]="login"/>
-  <input [(ngModel)]="password"/>
-  <button class="btn" (click)="get()">Fetch</button>
-  <button class="btn" (click)="previous()">Previous</button>
-  <button class="btn" (click)="next()">Next</button>
-  <button class="btn" (click)="new()">New</button>
-  <button *ngIf="lecture===false" class="btn" (click)="post()">Post</button>
-</div>
+<mat-toolbar id='barre' color='primary'>
+  <mat-form-field  appearance="legacy">
+    <input matInput [formControl]="login" [errorStateMatcher]="matcher"/>
+    <mat-label><mat-icon>account_circle</mat-icon>Login</mat-label>
+    <mat-error *ngIf="!(this.idEventMain.valid&&(this.login.valid&&this.password.valid)||(this.token.valid))">
+     Log/pwd or token <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field  appearance="legacy">
+    <input matInput [formControl]="password" [errorStateMatcher]="matcher" [type]="hide ? 'password' : 'text'"/>
+    <mat-label><mat-icon>lock</mat-icon>Password</mat-label>
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    <mat-error *ngIf="!(this.idEventMain.valid&&(this.login.valid&&this.password.valid)||(this.token.valid))">
+     Log/pwd or token <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field  appearance="legacy">
+    <input matInput [formControl]="token"/>
+    <mat-label><mat-icon>toll</mat-icon>Token</mat-label>
+    <mat-hint>Saisir un token du jour</mat-hint>
+    <mat-error *ngIf="!(this.idEventMain.valid&&(this.login.valid&&this.password.valid)||(this.token.valid))">
+     Log/pwd or token <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="legacy" >
+    <input matInput [formControl]="idEventMain" [errorStateMatcher]="matcher" required/>
+    <mat-label><mat-icon>event</mat-icon>N° de l'événement</mat-label>
+    <mat-hint>Saisir un entier</mat-hint>
+    <mat-error *ngIf="idEventMain.hasError('pattern') && !idEventMain.hasError('required')">
+     Please enter a valid id
+    </mat-error>
+    <mat-error *ngIf="idEventMain.hasError('required')">
+     Id is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <button mat-icon-button color="accent" (click)="get()" aria-label="Fetch" matTooltip="Fetch" matTooltipPosition="above" [disabled]="!(this.idEventMain.valid&&(this.login.valid&&this.password.valid)||(this.token.valid))"><mat-icon>search</mat-icon></button>
+  <button mat-icon-button color="accent" (click)="previous()" aria-label="Previous" matTooltip="Previous" matTooltipPosition="above" [disabled]="!(this.idEventMain.valid&&(this.login.valid&&this.password.valid)||(this.token.valid))"><mat-icon>navigate_before</mat-icon></button>
+  <button mat-icon-button color="accent" (click)="next()" aria-label="Next" matTooltip="Next" matTooltipPosition="above" [disabled]="!(this.idEventMain.valid&&(this.login.valid&&this.password.valid)||(this.token.valid))"><mat-icon>navigate_next</mat-icon></button>
+  <button mat-icon-button color="accent" (click)="new()" aria-label="New" matTooltip="New" matTooltipPosition="above" [disabled]="!(this.idEventMain.valid&&(this.login.valid&&this.password.valid)||(this.token.valid))"><mat-icon>add_circle</mat-icon></button>
+</mat-toolbar>
 <div id="fiche">
   <app-event [eventmain]="eventmain" [lecture]="lecture"></app-event>
 </div>

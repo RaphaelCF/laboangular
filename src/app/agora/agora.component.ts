@@ -1,8 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { AgoraService } from '../agora.service';
 import { MessageService } from '../message.service';
 import { Eventmain } from '../eventmain';
+import { TooltipPosition } from '@angular/material';
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-agora',
@@ -10,18 +21,30 @@ import { Eventmain } from '../eventmain';
   styleUrls: ['./agora.component.css']
 })
 export class AgoraComponent implements OnInit {
-  idEventMain: number;
   eventmain: Eventmain;
   lecture: boolean;
-  token: string;
-  login: string;
-  password: string;
+
+  idEventMain = new FormControl('', [
+    Validators.required,
+    Validators.pattern('[0-9]*')
+  ]);
+  login = new FormControl('', [
+    Validators.required
+  ]);
+  password = new FormControl('', [
+    Validators.required
+  ]);
+  token = new FormControl('', [
+    Validators.required
+  ]);
+  matcher = new MyErrorStateMatcher();
+  hide = true;
 
   constructor(private agoraService:AgoraService) { }
 
   goget(){
     this.lecture = true;
-    this.agoraService.getEventMain(this.idEventMain).subscribe(eventmain => this.eventmain =eventmain);
+    this.agoraService.getEventMain(this.idEventMain.value).subscribe(eventmain => this.eventmain =eventmain);
   }
 
   exploit(eventmain: Eventmain){
@@ -34,19 +57,21 @@ export class AgoraComponent implements OnInit {
   }
 
   get(): void {
-    if (this.token === ''){
-      this.agoraService.login = this.login;
-      this.agoraService.password = this.password;
+    if (this.token.value === ''){
+      this.agoraService.login = this.login.value;
+      this.agoraService.password = this.password.value;
       this.agoraService.authenticate().subscribe(any => this.goget());
     }
     else{
-      this.agoraService.token = this.token;
+      this.agoraService.token = this.token.value;
       this.goget();
     }
 	}
 
   next(): void {
-    this.idEventMain ++;
+    let value = this.idEventMain.value;
+    value ++;
+    this.idEventMain.setValue(value);
     this.get();
   }
 
@@ -72,27 +97,26 @@ export class AgoraComponent implements OnInit {
   }
 
   post(): void {
-    if (this.token === ''){
-      this.agoraService.login = this.login;
-      this.agoraService.password = this.password;
+    if (this.token.value === ''){
+      this.agoraService.login = this.login.value;
+      this.agoraService.password = this.password.value;
       this.agoraService.authenticate().subscribe(any => this.gopost());
     }
     else{
-      this.agoraService.token = this.token;
+      this.agoraService.token = this.token.value;
       this.gopost();
     }
   }
 
   previous(): void {
-    this.idEventMain --;
+    let value = this.idEventMain.value;
+    value --;
+    this.idEventMain.setValue(value);
     this.get();
   }
 
   ngOnInit() {
-    this.idEventMain = 4000;
-    this.token = '';
-    this.login = '';
-    this.password = '';
+    this.idEventMain.setValue(4000);
   }
 
 }
